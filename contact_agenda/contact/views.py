@@ -34,3 +34,9 @@ def deleteContact(request, contact_id):
         'contact': contact_id
     })
 
+def editContact(request, contact_id):
+    contact_id = get_object_or_404(Contact, pk=contact_id)
+    return render(request, 'edit.html', {
+        'contact': contact_id
+    })
+
