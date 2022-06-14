@@ -1,9 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style-delete.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style-delete.css' %}">
 	
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
@@ -15,12 +17,12 @@
 
 	<div class="container">
 		<header class="hero">
-			<a href="edit.html">
+			<a href="{% url 'contact:contact-detail' contact.contact_id %}">
 				<i class="fas fa-chevron-circle-left back-btn"></i>
 			</a>
 			<div class="hero-info">
-				<h1 class="name">Jane Doe</h1>
-				<p class="relationship-hero">Friend</p>
+				<h1 class="name">{{contact.contact_name}}</h1>
+				<p class="relationship-hero">{{contact.contact_relation.contact_relation_text}}</p>
 			</div>
 		</header>
 

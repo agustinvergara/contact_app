@@ -21,11 +21,16 @@ def addContactView(request):
     return render(request, 'new.html')
 
 def contactSaver(request):
-    name = Contact(contact_name=request.POST["fullname"], contact_lastname=request.POST["fullname"], phone_number=request.POST["phone-number"])
-    name.save()
+    new_contact = Contact(contact_name=request.POST["fullname"],  
+    phone_number=request.POST["phone-number"])
+    
+    new_contact.save()
 
     return HttpResponseRedirect(reverse('contact:index'))
 
-def deleteContact(request):
-    pass
+def deleteContact(request, contact_id):
+    contact_id = get_object_or_404(Contact, pk=contact_id)
+    return render(request, 'delete.html', {
+        'contact': contact_id
+    })
 
