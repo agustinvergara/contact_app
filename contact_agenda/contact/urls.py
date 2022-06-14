@@ -11,5 +11,7 @@ urlpatterns = [
     #contact saver path ex: contact/contactSaver/
     path('contactSaver/', views.contactSaver, name= 'contactSaver'),
     #contact profile path ex: contact/contact-detail/
-    path('<int:contact_id>/contact-detail/', views.detail, name='contact-detail')
+    path('<int:contact_id>/contact-detail/', views.detail, name='contact-detail'),
+    #delete contact path ex: contact/2/delete/
+    path('<int:contact_id>/delete/', views.deleteContact , name='delete'),
 ]
