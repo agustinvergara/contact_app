@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style-edit.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style-edit.css' %}">
 	
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
@@ -21,8 +22,8 @@
 			</a>
 
 			<div class="hero-info">
-				<h1 class="name">Jane Doe</h1>
-				<p class="relationship-hero">Friend</p>
+				<h1 class="name">{{contact.contact_name}}</h1>
+				<p class="relationship-hero">{{contact.contact_relation.contact_relation_text}}</p>
 			</div>
 		</header>
 
@@ -73,7 +74,7 @@
 		</section>
 
 		<section class="button-container">
-			<a href="delete.html">
+			<a href="{% url 'contact:delete' contact.contact_id %}">
 				<div class="update-contact">
 					<i class="fas fa-trash icon-gradient"></i>
 					<button class="button">Delete Contact</button>
