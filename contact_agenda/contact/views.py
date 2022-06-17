@@ -37,6 +37,7 @@ def contactSaver(request):
         contact_lastname = contact_name_surname[1] , 
         phone_number = request.POST["phone-number"] , 
         contact_email = request.POST["email"] ,
+        contact_relation_id = request.POST["relationship"] ,
         #para agregar los otros campos trabajar funcionalidad de vistas address, relation
     )
     
