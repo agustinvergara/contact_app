@@ -8,7 +8,7 @@ from .models import *
 def index(request):
     contact_list = Contact.objects.all()
     return render(request, 'index.html', {
-        'contact_list': contact_list
+        'contact_list' : contact_list
     })
 
 def detail(request, contact_id):
@@ -18,11 +18,27 @@ def detail(request, contact_id):
     })
 
 def addContactView(request):
-    return render(request, 'new.html')
+    relatinoship_list = ContactRelation.objects.all()
+    return render(request, 'new.html', {
+        'relationship_list' : relatinoship_list
+    })
 
+#not a view - just a function
+#def nameSplitter():
+
+#manejo de errores - si no se introduce un surname con un ' ' explicito va a enviar un error
+#'''manejo de errores - si algun campo no se llena va a enviar error(verificar si pasa solo cono los NOT NULL)
+# o si sucede tambien con los que no tienen este constraint en la db'''
 def contactSaver(request):
-    new_contact = Contact(contact_name=request.POST["fullname"],  
-    phone_number=request.POST["phone-number"])
+    contact_fullname_str = ''.join(request.POST["fullname"])
+    contact_name_surname = contact_fullname_str.split(' ')
+    new_contact = Contact(
+        contact_name = contact_name_surname[0] , 
+        contact_lastname = contact_name_surname[1] , 
+        phone_number = request.POST["phone-number"] , 
+        contact_email = request.POST["email"] ,
+        #para agregar los otros campos trabajar funcionalidad de vistas address, relation
+    )
     
     new_contact.save()
 
