@@ -38,12 +38,26 @@ def contactSaver(request):
         phone_number = request.POST["phone-number"] , 
         contact_email = request.POST["email"] ,
         contact_relation_id = request.POST["relationship"] ,
-        #para agregar los otros campos trabajar funcionalidad de vistas address, relation
+        #para agregar los savingotros campos trabajar funcionalidad de vistas address, relation
     )
     
     new_contact.save()
 
     return HttpResponseRedirect(reverse('contact:index'))
+
+def newContactAddressSaver(request):
+    new_address = ContactAddress(
+        address_1 = request.POST["address-1"] ,
+        address_2 = request.POST["address-2"] ,
+        city = request.POST["city"] ,
+    )
+
+    new_address.save()
+
+    return HttpResponseRedirect(reverse('contact:add-contact'))
+
+def newContactAddress(request):
+    return render(request, 'new-contact-address.html')
 
 def deleteContact(request, contact_id):
     contact_id = get_object_or_404(Contact, pk=contact_id)
