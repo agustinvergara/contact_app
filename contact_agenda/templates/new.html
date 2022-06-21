@@ -36,6 +36,7 @@
 					<i class="fas fa-phone icon-gradient"></i>
 					<input type="text" class="type" name="fullname" placeholder="Full Name">
 				</div>
+
 				{% for relationship in relationship_list %}
 				<div class="info-line">
 					<i class="fas fa-user-circle icon-gradient"></i>
@@ -58,11 +59,9 @@
 				</div>
 
 
-
-
 				<div class="info-line">
 					<i class="fas fa-map-marker-alt icon-gradient location"></i>
-					<input type="button" class="type" name="address" placeholder="Address">
+					<a href="{% url 'contact:new-contact-address' %}" class="detail-button">Address</a>
 				</div>
 
 
@@ -70,7 +69,6 @@
 					<i class="fas fa-envelope icon-gradient location"></i>
 					<input type="text" class="type" name="email" placeholder="Email">
 				</div>
-
 
 
 			</section>
