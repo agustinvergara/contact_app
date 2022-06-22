@@ -23,6 +23,11 @@
             </div>
         </header>
 
+		<a href="{% url 'contact:add-contact' %}">
+			<i class="fas fa-chevron-circle-left back-btn"></i>
+		</a>
+
+
         <form action="{% url 'contact:new-contact-address-saver' %}" method="POST">
             {% csrf_token %}
             <section class="contact-info">
