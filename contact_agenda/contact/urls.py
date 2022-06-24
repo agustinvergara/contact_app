@@ -19,5 +19,5 @@ urlpatterns = [
     #new contact address render view path ex: contact/new-contact-address/
     path('new-contact-address/' , views.newContactAddress , name = 'new-contact-address') ,
     #new contact address saver path ex: contact/new-contact-address-saver/
-    path('new-contact-address-saver/' , views.newContactAddressSaver , name = 'new-contact-address-saver') ,
+    path('contact-address-saver/' , NewContactAddressSaver.as_view(), name = 'address-saver') ,
 ]

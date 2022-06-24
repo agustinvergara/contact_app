@@ -29,17 +29,18 @@ CREATE TABLE contact_relation(
 
 CREATE TABLE contact_address(
 	contact_address_id INTEGER UNIQUE AUTO_INCREMENT,
+	contact_id INTEGER,
 	address_1 VARCHAR(70),
 	address_2 VARCHAR(70),
 	city VARCHAR(20),
 	PRIMARY KEY (contact_address_id)
+	FOREIGN KEY (contact_id) REFERENCES contacts(contact_id)
 );
 
 CREATE TABLE contacts(
 	contact_id INTEGER NOT NULL UNIQUE AUTO_INCREMENT,
 	user_id INTEGER,
 	contact_relation_id INTEGER,
-	contact_address_id INTEGER DEFAULT NULL,
 	contact_name VARCHAR(30) NOT NULL,
 	contact_lastname VARCHAR(30) NOT NULL,
 	phone_number INTEGER NOT NULL UNIQUE,

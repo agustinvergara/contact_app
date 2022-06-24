@@ -42,5 +42,4 @@ if(window.navigation.currentEntry.url == 'http://127.0.0.1:8000/contact/add-cont
 
 } 
 
-
-console.log(window.navigation.currentEntry.url)
+console.log(window.localStorage.getItem('address1'))

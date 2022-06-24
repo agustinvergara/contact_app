@@ -28,25 +28,25 @@
 		</a>
 
 
-        <form action="{% url 'contact:new-contact-address-saver' %}" method="POST">
+        <form action="{% url 'contact:address-saver' %}" method="POST">
             {% csrf_token %}
             <section class="contact-info">
 
 				<div class="info-line">
 					<i class="fas fa-map-marker-alt icon-gradient location"></i>
-					<input type="text" class="type" name="address-1" placeholder="Adress 1">
+					<input id='address1' type="text" class="type" name="address-1" placeholder="Adress 1">
 				</div>
 
 
 				<div class="info-line">
 					<i class="fas fa-map-marker-alt icon-gradient location"></i>
-					<input type="text" class="type" name="address-2" placeholder="address 2">
+					<input id='address2' type="text" class="type" name="address-2" placeholder="address 2">
 				</div>
 
 
 				<div class="info-line">
 					<i class="fas fa-map-marker-alt icon-gradient location"></i>
-					<input type="text" class="type" name="city" placeholder="City">
+					<input id='city' type="text" class="type" name="city" placeholder="City">
 				</div>
 
 
@@ -63,5 +63,7 @@
 
         </form>
     </div>    
+	<script src="{% static 'new-contact-address.js' %}"></script>
+
 </body>
 </html>
