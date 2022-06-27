@@ -81,7 +81,6 @@ class Contact(models.Model):
     contact_id = models.AutoField(primary_key=True)
     user = models.ForeignKey('User', models.DO_NOTHING, blank=True, null=True)
     contact_relation = models.ForeignKey('ContactRelation', models.DO_NOTHING, blank=True, null=True)
-    contact_address = models.ForeignKey('ContactAddress', models.DO_NOTHING, blank=True, null=True)
     contact_name = models.CharField(max_length=30)
     contact_lastname = models.CharField(max_length=30)
     phone_number = models.IntegerField(unique=True)
@@ -95,6 +94,7 @@ class Contact(models.Model):
 
 class ContactAddress(models.Model):
     contact_address_id = models.AutoField(primary_key=True)
+    contact = models.ForeignKey(Contact, models.DO_NOTHING, blank=True, null=True)
     address_1 = models.CharField(max_length=70, blank=True, null=True)
     address_2 = models.CharField(max_length=70, blank=True, null=True)
     city = models.CharField(max_length=20, blank=True, null=True)
@@ -106,7 +106,7 @@ class ContactAddress(models.Model):
 
 class ContactRelation(models.Model):
     contact_relation_id = models.AutoField(primary_key=True)
-    contact_relation = models.CharField(max_length=10, blank=True, null=True)
+    contact_relation_text = models.CharField(max_length=10, blank=True, null=True)
 
     class Meta:
         managed = False
