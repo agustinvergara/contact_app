@@ -29,8 +29,8 @@
 		</header>
 		
 		<form action="{% url 'contact:contactSaver' %}" method="POST">
-			{% csrf_token %}
-			<section class="contact-info">
+		{% csrf_token %}
+			<section class="contact-info" id='new-contact-info'>
 				
 				<div class="info-line">
 					<i class="fas fa-phone icon-gradient"></i>
@@ -61,7 +61,7 @@
 				
 				<div class="info-line">
 					<i class="fas fa-map-marker-alt icon-gradient location"></i>
-					<a href="{% url 'contact:new-contact-address' %}" class="detail-button">Address</a>
+					<button id="addres-button" type="button" class="button">Address</button>
 				</div>
 				
 				
@@ -85,6 +85,8 @@
 			</form>
 		</div>
 		<script src="{% static 'new.js' %}"></script>
+		<script src="{% static 'handle-address-button.js' %}"></script>
+
 		
 	</body>
 	

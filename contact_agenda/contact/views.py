@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
 from .models import *
@@ -23,38 +23,44 @@ def addContactView(request):
         'relationship_list' : relatinoship_list
     })
 
-#not a view - just a function
-#def nameSplitter():
+# def newContactAddressReciever(request):
+#     address1 = request.POST["address-1"]
+#     address2 = request.POST["address-2"]
+#     contactcity = request.POST["city"]
+
+#     return address1, address2, contactcity
 
 #manejo de errores - si no se introduce un surname con un ' ' explicito va a enviar un error
 #'''manejo de errores - si algun campo no se llena va a enviar error(verificar si pasa solo cono los NOT NULL)
-# o si sucede tambien con los que no tienen este constraint en la db'''
+# o si sucede tambien con los que no tienen este constraint en la db'''\
+
 def contactSaver(request):
+
     contact_fullname_str = ''.join(request.POST["fullname"])
     contact_name_surname = contact_fullname_str.split(' ')
     new_contact = Contact(
-        contact_name = contact_name_surname[0] , 
-        contact_lastname = contact_name_surname[1] , 
-        phone_number = request.POST["phone-number"] , 
+        contact_name = contact_name_surname[0] ,
+        contact_lastname = contact_name_surname[1] ,
+        phone_number = request.POST["phone-number"] ,
         contact_email = request.POST["email"] ,
         contact_relation_id = request.POST["relationship"] ,
         #para agregar los savingotros campos trabajar funcionalidad de vistas address, relation
     )
-    
+
     new_contact.save()
 
-    return HttpResponseRedirect(reverse('contact:index'))
-
-def newContactAddressSaver(request):
-    new_address = ContactAddress(
+    new_contact_address = ContactAddress(
+        contact_id = new_contact.contact_id ,
         address_1 = request.POST["address-1"] ,
         address_2 = request.POST["address-2"] ,
         city = request.POST["city"] ,
     )
 
-    new_address.save()
+    new_contact_address.save()
+    return HttpResponseRedirect(reverse('contact:index'))
 
-    return HttpResponseRedirect(reverse('contact:add-contact'))
+
+
 
 def newContactAddress(request):
     return render(request, 'new-contact-address.html')
