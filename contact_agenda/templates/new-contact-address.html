@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,7 @@
 		</a>
 
 
-        <form action="{% url 'contact:new-contact-address-saver' %}" method="POST">
+        <form action="{% url 'contact:contactSaver' %}" method="POST">
             {% csrf_token %}
             <section class="contact-info">
 
@@ -57,11 +57,13 @@
 
 				<div class="update-contact">
 					<i id="save" class="fas fa-check-circle icon-gradient"></i>
-					<button type=" submit" class="button">Save Address</button>
-				</div>
-			</section>
+					{% comment %} <a href="{% url 'contact:add-contact' %}"> {% endcomment %}
+						{% comment %} <button type="submit" class="button">Save Address</button> {% endcomment %}
+					{% comment %} </a> {% endcomment %}
+				{% comment %} </div> {% endcomment %}
+			{% comment %} </section> {% endcomment %}
 
-        </form>
-    </div>    
-</body>
-</html>
+        {% comment %} </form> {% endcomment %}
+    {% comment %} </div>     {% endcomment %}
+{% comment %} </body> {% endcomment %}
+{% comment "" %}</html> {% endcomment %}

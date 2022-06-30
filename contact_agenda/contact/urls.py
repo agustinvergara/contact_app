@@ -18,6 +18,6 @@ urlpatterns = [
     path('<int:contact_id>/edit/' , views.editContact , name = 'edit-contact') ,
     #new contact address render view path ex: contact/new-contact-address/
     path('new-contact-address/' , views.newContactAddress , name = 'new-contact-address') ,
-    #new contact address saver path ex: contact/new-contact-address-saver/
-    path('new-contact-address-saver/' , views.newContactAddressSaver , name = 'new-contact-address-saver') ,
+    #new contact address reciever path ex: contact/new-contact-address-reciever/
+     #path('new-contact-address-reciever/' , views.newContactAddressReciever , name = 'new-contact-address-reciever') ,
 ]
