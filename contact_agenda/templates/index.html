@@ -37,7 +37,7 @@
 			<ul class="contacts-list">
 				{% for contact in contact_list reversed %}
 
-				<a href="{% url 'contact:contact-detail' contact.contact_id %}" style="text-decoration: none;">
+				<a href="{% url 'contact:contact-detail' contact.contact_id  %}" style="text-decoration: none;">
 
 					<div class="contact-section">
 						<li class="list__item">

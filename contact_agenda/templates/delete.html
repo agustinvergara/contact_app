@@ -27,11 +27,15 @@
 		</header>
 
 		<section class="delete-container">
-			<p>Are you sure you want to delete this contact?</p>
-			<div class="delete-contact">
-				<i class="fas fa-trash delete-icon"></i>
-				<button class="delete-button">Delete Contact</button>
-			</div>
+				<p>Are you sure you want to delete this contact?</p>
+				<div class="delete-contact">
+					<form method="POST" action="{% url 'contact:contact-deleter' %}">
+					{% csrf_token %}
+					{% comment %} <input type="hidden" name="button" value="{{ contact.contact_id }}"> {% endcomment %}
+					<i class="fas fa-trash delete-icon"></i>
+					<button class="delete-button" type="submit" name="delete" value="{{ contact.contact_id }}">Delete Contact</button>
+				</form>
+				</div>
 		</section>
 	</div>
 

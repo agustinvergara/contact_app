@@ -14,10 +14,13 @@ urlpatterns = [
     path('<int:contact_id>/contact-detail/', views.detail , name = 'contact-detail') ,
     #delete contact path ex: contact/2/delete/
     path('<int:contact_id>/delete/' , views.deleteContact , name = 'delete') ,
-    #edit contact path ex: contact/2/edit/
+    #edit contact view path ex: contact/2/edit/
     path('<int:contact_id>/edit/' , views.editContact , name = 'edit-contact') ,
-    #new contact address render view path ex: contact/new-contact-address/
-    path('new-contact-address/' , views.newContactAddress , name = 'new-contact-address') ,
+    #edit contact in db path ex: contact/contact-editer/
+    path('contact-editer', views.contactEditor, name='contact-editor') ,
+    # #new contact address render view path ex: contact/new-contact-address/
+    # path('new-contact-address/' , views.newContactAddress , name = 'new-contact-address') ,
     #new contact address reciever path ex: contact/new-contact-address-reciever/
      #path('new-contact-address-reciever/' , views.newContactAddressReciever , name = 'new-contact-address-reciever') ,
+    path('contact-deleter/', views.contactDeleter, name = 'contact-deleter')
 ]
