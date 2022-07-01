@@ -12,9 +12,11 @@ def index(request):
     })
 
 def detail(request, contact_id):
-    contact_id = get_object_or_404(Contact, pk=contact_id)
+    contact = get_object_or_404(Contact, pk=contact_id)
+    contact_address = get_object_or_404(ContactAddress, contact_id=contact_id)
     return render(request, 'contact-profile.html', {
-        'contact': contact_id
+        'contact': contact ,
+        'contact_address': contact_address ,
     })
 
 def addContactView(request):
@@ -23,16 +25,6 @@ def addContactView(request):
         'relationship_list' : relatinoship_list
     })
 
-# def newContactAddressReciever(request):
-#     address1 = request.POST["address-1"]
-#     address2 = request.POST["address-2"]
-#     contactcity = request.POST["city"]
-
-#     return address1, address2, contactcity
-
-#manejo de errores - si no se introduce un surname con un ' ' explicito va a enviar un error
-#'''manejo de errores - si algun campo no se llena va a enviar error(verificar si pasa solo cono los NOT NULL)
-# o si sucede tambien con los que no tienen este constraint en la db'''\
 
 def contactSaver(request):
 
@@ -60,10 +52,38 @@ def contactSaver(request):
     return HttpResponseRedirect(reverse('contact:index'))
 
 
+# def newContactAddress(request):
+#     return render(request, 'new-contact-address.html')
+
+def editContact(request, contact_id):
+    contact = get_object_or_404(Contact, pk=contact_id)
+    relationship_list = ContactRelation.objects.all()
+    return render(request, 'edit.html', {
+        'contact': contact,
+        'relation': relationship_list
+    })
+
+def contactEditor(request):
+    contact = get_object_or_404(Contact, pk=request.POST["button"])
+    contact_address = get_object_or_404(ContactAddress, contact_id=request.POST["button"])
+
+    contact_fullname_str = ''.join(request.POST["fullname"])
+    contact_name_surname = contact_fullname_str.split(' ')
+    contact.contact_name = contact_name_surname[0] 
+    contact.contact_lastname = contact_name_surname[1] 
+    contact.phone_number = request.POST["phone-number"] 
+    contact.contact_email = request.POST["email"] 
+    contact.contact_relation_id = request.POST["relationship"] 
+    contact.save()
 
 
-def newContactAddress(request):
-    return render(request, 'new-contact-address.html')
+    contact_address.address_1 = request.POST["address-1"] 
+    contact_address.address_2 = request.POST["address-2"]
+    contact_address.city = request.POST["city"]
+    contact_address.save() 
+    
+
+    return HttpResponseRedirect(reverse('contact:index'))
 
 def deleteContact(request, contact_id):
     contact_id = get_object_or_404(Contact, pk=contact_id)
@@ -71,9 +91,10 @@ def deleteContact(request, contact_id):
         'contact': contact_id
     })
 
-def editContact(request, contact_id):
-    contact_id = get_object_or_404(Contact, pk=contact_id)
-    return render(request, 'edit.html', {
-        'contact': contact_id
-    })
+def contactDeleter(request):
+    contact = get_object_or_404(Contact, pk=request.POST["delete"])
+    contact_address = get_object_or_404(ContactAddress, contact_id=request.POST["delete"])
+    contact_address.delete()
+    contact.delete()
 
+    return HttpResponseRedirect(reverse('contact:index'))

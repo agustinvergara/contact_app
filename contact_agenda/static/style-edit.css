@@ -134,3 +134,13 @@ p{
 	 outline: none;
 	cursor: pointer;
 }
+
+.radio-label{
+	border: none;
+	background: none;
+	padding-top: 0.6em;
+	padding-left: 0em;
+	font-size: 1.2em;
+	color: #fff;
+	outline: none;
+}

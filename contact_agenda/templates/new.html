@@ -37,20 +37,20 @@
 					<input id="fullname" type="text" class="type" name="fullname" placeholder="Full Name">
 				</div>
 				
-				{% for relationship in relationship_list %}
 				<div class="info-line">
 					<i class="fas fa-user-circle icon-gradient"></i>
-					<input 
-					type="radio" 
-					class="type"
-					id="relationship{{ forloop.counter }}" 
-					name="relationship" 
-					value="{{ relationship.contact_relation_id }}" >
-					<label for="relationship{{ forloop.counter }}">
-						{{ relationship.contact_relation_text }}
-					</label>
+					{% for relationship in relationship_list %}
+						<input 
+						type="radio" 
+						class="type"
+						id="relationship{{ forloop.counter }}" 
+						name="relationship" 
+						value="{{ relationship.contact_relation_id }}" >
+						<label class="radio-label" for="relationship{{ forloop.counter }}">
+							{{ relationship.contact_relation_text }}
+						</label>
+					{% endfor %}
 				</div>
-				{% endfor %}
 				
 				
 				<div class="info-line">
