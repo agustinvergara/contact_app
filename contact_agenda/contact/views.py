@@ -56,12 +56,23 @@ def contactSaver(request):
 #     return render(request, 'new-contact-address.html')
 
 def editContact(request, contact_id):
+#this is other form to declare the dict we need to put inside the render fucntion
+    #first we create a empty dict we call it here context
+    context = {}
+    #like allways we call the db object we need to view
     contact = get_object_or_404(Contact, pk=contact_id)
     relationship_list = ContactRelation.objects.all()
-    return render(request, 'edit.html', {
-        'contact': contact,
-        'relation': relationship_list
-    })
+    #we put the object inside the empy context dict passing the name of the key inside ['']
+    context['contact'] = contact
+    context['relation'] = relationship_list
+
+    #to finish we just need to put the variable context (that contains the dict with the db objects
+    # that the render fucntion needs)
+    return render(request, 'edit.html', context)
+    #{
+    #     'contact': contact,
+    #     'relation': relationship_list
+    # })
 
 def contactEditor(request):
     contact = get_object_or_404(Contact, pk=request.POST["button"])
