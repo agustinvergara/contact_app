@@ -17,6 +17,6 @@ def api_contactserializer_detailview(request, contact_id):#for now im hardcoding
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET' or 'POST':
-        data = ContactSerializer(contact)
-        serializer2 = ContactAdressSerializer(address)
-        return Response(data.data)
+        contact_serializer = ContactSerializer.ContactAdressSerializer(address)
+        contact_serializer = ContactSerializer(contact)
+        return Response(contact_serializer.data)
